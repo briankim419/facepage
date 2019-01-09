@@ -7,12 +7,11 @@ class Api::V1::PostsController < ApplicationController
   def show
     render json: Post.find(params[:id])
   end
- 
+
   def create
     post = Post.new(post_params)
 
     if post.save
-      flash[:notice] = 'Post was successfully created'
       render json: post
     else
       render json: { error: post.errors.full_messages }, status: :unprocessable_entity

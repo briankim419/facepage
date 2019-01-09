@@ -1,11 +1,11 @@
 import React from 'react'
 import { Router, Route, Switch, browserHistory } from 'react-router'
 
-class PostFormContainer extends React.Component {
+class CommentFormContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      body: '',
+      text: '',
       errors: {}
     };
     this.handleChange = this.handleChange.bind(this);
@@ -16,12 +16,12 @@ class PostFormContainer extends React.Component {
 
   validateBody(selection) {
     if (selection.trim() === '') {
-      let newError = { body: 'The post can not be blank.' }
+      let newError = { text: 'The post can not be blank.' }
       this.setState({ errors: Object.assign({}, this.state.errors, newError) })
       return false
     } else {
       let errorState = this.state.errors
-      delete errorState.body
+      delete errorState.text
       this.setState({ errors: errorState })
       return true
     }
@@ -35,21 +35,21 @@ class PostFormContainer extends React.Component {
 
   handleClearForm(){
     this.setState({
-      body: '',
+      text: '',
       errors: ''
     })
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    if(this.validateBody(this.state.body)) {
-      let body = new FormData()
-      body.append("body", this.state.body)
-
-      fetch(`/api/v1/posts`, {
+    if(this.validateBody(this.state.text)) {
+      this.props.addNewReview({text: this.state.text})
+      let formPayload = new FormData()
+      formPayload.append("text", this.state.text)
+      fetch(`/api/v1/posts/${this.props.id}/comments`, {
         credentials: 'same-origin',
         method: 'POST',
-        body: body,
+        body: formPayload,
         headers: {
           'Accept': 'application/json' }
       })
@@ -80,8 +80,8 @@ class PostFormContainer extends React.Component {
       errorDiv = <div className="callout alert">{errorItems}</div>
     }
     return(
-      <form className="callout" onSubmit={this.handleSubmit}>
-        <input name='body' type='text' value={this.state.body} onChange={this.handleChange} />
+      <form onSubmit={this.handleSubmit}>
+        <input name='text' type='text' value={this.state.text} onChange={this.handleChange} />
         <input className="button" type="submit" value="Submit" />
         {errorDiv}
       </form>
@@ -89,4 +89,4 @@ class PostFormContainer extends React.Component {
   }
 };
 
-export default PostFormContainer;
+export default CommentFormContainer;

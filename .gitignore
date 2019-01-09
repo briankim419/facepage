@@ -32,3 +32,10 @@
 yarn-debug.log*
 .yarn-integrity
 coverage/*
+/coverage
+
+# Ignore uploaded files in test/development
+/public/uploads
+
+# Ignore environment variables
+.env
