@@ -16,7 +16,7 @@ class CommentFormContainer extends React.Component {
 
   validateBody(selection) {
     if (selection.trim() === '') {
-      let newError = { text: 'The comment can not be blank.' }
+      let newError = { text: 'The post can not be blank.' }
       this.setState({ errors: Object.assign({}, this.state.errors, newError) })
       return false
     } else {
@@ -43,10 +43,9 @@ class CommentFormContainer extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     if(this.validateBody(this.state.text)) {
-      this.props.addNewComment({text: this.state.text})
+      this.props.addNewReview({text: this.state.text})
       let formPayload = new FormData()
       formPayload.append("text", this.state.text)
-      this.handleClearForm()
       fetch(`/api/v1/posts/${this.props.id}/comments`, {
         credentials: 'same-origin',
         method: 'POST',

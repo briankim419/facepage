@@ -43,8 +43,6 @@ class PostFormContainer extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     if(this.validateBody(this.state.body)) {
-      this.props.addNewPost({body: this.state.body })
-
       let body = new FormData()
       body.append("body", this.state.body)
 
