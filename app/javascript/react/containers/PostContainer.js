@@ -10,7 +10,7 @@ class PostContainer extends React.Component {
       posts: [],
       comments: []
     };
-    this.addNewReview = this.addNewReview.bind(this);
+    this.addNewComment = this.addNewComment.bind(this);
   }
   componentDidMount() {
     fetch(`/api/v1/posts/${this.props.id}/comments`)
@@ -25,25 +25,30 @@ class PostContainer extends React.Component {
       })
       .then(response => response.json())
       .then(body => {
+        if(body.comments == undefined ){
         this.setState({ comments:body });
+        }
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
-  addNewReview(commentPayload) {
-   let newComments = this.state.comments.concat(commentPayload)
-   this.setState({ comments: newComments })
-  }
+  addNewComment(commentPayload) {
+     let newComments = this.state.comments.concat(commentPayload)
+     this.setState({ comments: newComments })
+   }
 
   render(){
-    let all_comments = this.state.comments.map(comment => {
-      return(
-        <CommentTile
-          key={comment.id}
-          id={comment.id}
-          text={comment.text}
-        />
-      )
-    });
+    let all_comments
+    if(this.state.comments.length > 0){
+     all_comments = this.state.comments.map(comment => {
+        return(
+          <CommentTile
+            key={comment.id}
+            id={comment.id}
+            text={comment.text}
+          />
+        )
+      });
+    };
     return(
       <div>
         <h1>{this.props.body}</h1>
@@ -51,7 +56,7 @@ class PostContainer extends React.Component {
         <CommentFormContainer
           key={this.props.id}
           id={this.props.id}
-          addNewReview={this.addNewReview}
+          addNewComment={this.addNewComment}
         />
       </div>
     );
