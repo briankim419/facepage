@@ -6,9 +6,12 @@ module ApplicationCable
       self.current_user = find_verified_user
     end
 
-    private
+    # Allow for current user via cookies
+
+    protected
       def find_verified_user
-        if verified_user = User.find_by(id: cookies.signed[:user_id])
+        verified_user = User.find_by(id: cookies.signed['user.id'])
+        if verified_user && cookies.signed['user.expires_at'] > Time.now
           verified_user
         else
           reject_unauthorized_connection

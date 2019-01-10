@@ -37,7 +37,8 @@ class ChatContainer extends Component {
       // Info that is sent to the subscribed method
       {
         channel: "ChatChannel",
-        chat_id: this.props.params["id"]
+        chat_id: 1
+        // chat_id: this.props.params["id"]
       },
       {
         connected: () => console.log("ChatChannel connected"),
@@ -82,8 +83,6 @@ class ChatContainer extends Component {
       return(
         <Message
           key={message.messageId}
-          handle={message.user.handle}
-          icon={message.user.icon_num}
           message={message.message}
         />
       )
