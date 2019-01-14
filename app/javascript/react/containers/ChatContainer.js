@@ -18,7 +18,7 @@ class ChatContainer extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/v1/users', {
+    fetch(`/api/v1/groups/${this.props.id}`, {
       credentials: 'same-origin',
       method: 'GET',
       headers: { 'Content-Type': 'application/json' }
@@ -30,15 +30,13 @@ class ChatContainer extends Component {
       }
     })
     .then((data) => {
-      this.setState({user: data})
+      this.setState({user: data.current_user_id})
     })
-
     App.chatChannel = App.cable.subscriptions.create(
       // Info that is sent to the subscribed method
       {
         channel: "ChatChannel",
-        chat_id: 1
-        // chat_id: this.props.params["id"]
+        chat_id: this.props.id
       },
       {
         connected: () => console.log("ChatChannel connected"),
@@ -84,6 +82,7 @@ class ChatContainer extends Component {
         <Message
           key={message.messageId}
           message={message.message}
+          firstName={message.user.first_name}
         />
       )
     }, this);

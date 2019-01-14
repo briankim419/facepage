@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router'
+import React from 'react';
+import { Link } from 'react-router';
 
  const UserShowTile = (props) => {
    let followers = props.followersLength
@@ -7,8 +7,6 @@ import { Link } from 'react-router'
    let followeds = props.followedsLength
    let followedsTitle = "Following: "
    let button
-   let buttonText
-   let bar
 
    if(props.following == null) {
      button

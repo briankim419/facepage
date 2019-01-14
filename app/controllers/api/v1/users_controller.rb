@@ -1,6 +1,6 @@
 class Api::V1::UsersController < ApplicationController
 	protect_from_forgery unless: -> { request.format.json? }
-	# before_action :authenticate_user!, except: [:index, :show]
+	before_action :authenticate_user!
 
 	def index
 		render json: {users: User.all, current_user_id: current_user.id}
@@ -21,7 +21,13 @@ class Api::V1::UsersController < ApplicationController
 		end
 	end
 
+	def search
+		query = "%#{params[:query]}%"
+		user = User.where('first_name ilike ? or last_name ilike ? or email ilike ?', query, query, query)
+	end
+
 	def destroy
+		binding.pry
 		follow = Follow.find_by(follower: current_user, followed: User.find(delete_params))
 		follow.destroy
 
@@ -40,5 +46,11 @@ class Api::V1::UsersController < ApplicationController
 
 	def delete_params
 		params.require(:id)
+	end
+
+	def authorize_user
+		if !user_signed_in?
+			raise ActionController::RoutingError.new("User is not signed in")
+		end
 	end
 end

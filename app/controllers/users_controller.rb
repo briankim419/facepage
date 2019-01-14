@@ -3,9 +3,15 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-  def create
-    binding.pry
+  def show
+		@users = User.find(params[:id])
   end
+
+  def search
+    query = "%#{params[:query]}%"
+    @users = User.where('first_name ilike ? or last_name ilike ? or email ilike ?', query, query, query)
+  end
+
 
   def destroy
     @user = User.find(params[:id])

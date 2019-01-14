@@ -1,7 +1,7 @@
-import React from 'react'
-import { Router, Route, Switch, browserHistory } from 'react-router'
-import CommentFormContainer from '../containers/CommentFormContainer'
-import CommentTile from '../components/CommentTile'
+import React from 'react';
+import { Router, Route, Switch, browserHistory } from 'react-router';
+import CommentFormContainer from '../containers/CommentFormContainer';
+import CommentTile from '../components/CommentTile';
 
 class PostContainer extends React.Component {
   constructor(props) {
@@ -13,23 +13,25 @@ class PostContainer extends React.Component {
     this.addNewComment = this.addNewComment.bind(this);
   }
   componentDidMount() {
-    fetch(`/api/v1/posts/${this.props.id}/comments`)
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-              error = new Error(errorMessage);
-          throw(error);
-        }
-      })
-      .then(response => response.json())
-      .then(body => {
-        if(body.comments == undefined ){
-        this.setState({ comments:body });
-        }
-      })
-      .catch(error => console.error(`Error in fetch: ${error.message}`));
+    if(this.props.id != undefined){
+      fetch(`/api/v1/posts/${this.props.id}/comments`)
+        .then(response => {
+          if (response.ok) {
+            return response;
+          } else {
+            let errorMessage = `${response.status} (${response.statusText})`,
+                error = new Error(errorMessage);
+            throw(error);
+          }
+        })
+        .then(response => response.json())
+        .then(body => {
+          if(body.comments == undefined ){
+          this.setState({ comments:body });
+          }
+        })
+        .catch(error => console.error(`Error in fetch: ${error.message}`));
+    }
   }
   addNewComment(commentPayload) {
      let newComments = this.state.comments.concat(commentPayload)
@@ -52,6 +54,9 @@ class PostContainer extends React.Component {
     return(
       <div>
         <h1>{this.props.body}</h1>
+        <div className="post_photo">
+          <img src={this.props.photo} />
+        </div>
         {all_comments}
         <CommentFormContainer
           key={this.props.id}

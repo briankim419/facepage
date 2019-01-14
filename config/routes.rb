@@ -18,11 +18,11 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :usergroup, only: [:index, :show, :create]
+      resources :groups, only: [:index, :show, :create]
     end
   end
 
-  resources :posts, only:[:new, :create, :index, :show]
+
 
   namespace :api do
     namespace :v1 do
@@ -31,13 +31,18 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :users, only: [:search] do
+    get 'search', on: :collection
+  end
+
   resources :users, only: [:index, :show, :create, :destroy]
+  resources :posts, only: [:new, :create, :index, :show]
+  resources :groups, only: [:index, :show, :create, :detroy]
 
   devise_scope :user do
     get "users/sign_out" => "devise/sessions#destroy"
   end
 
-  # get "/chats/:id", to: "homes#index"
 
-  get "/users/:id", to: "homes#index"
+  get "/groups/:id/chats", to: "homes#index"
 end
