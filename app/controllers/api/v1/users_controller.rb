@@ -27,10 +27,9 @@ class Api::V1::UsersController < ApplicationController
 	end
 
 	def destroy
-		binding.pry
 		follow = Follow.find_by(follower: current_user, followed: User.find(delete_params))
 		follow.destroy
-
+    group = Group.find(delete_params)
 		user = User.find(delete_params)
 		render json: {followed: user.followeds, followers: user.followers}
 	end

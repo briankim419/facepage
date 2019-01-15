@@ -16,7 +16,9 @@ class Api::V1::GroupsController < ApplicationController
   end
 
 	def create
+    chatroom = Chat.create()
     group = Group.new(group_params)
+		group.chat = chatroom
 		if group.save
 			Usergroup.create(group_id: group.id, user_id: current_user.id)
       Usergroup.create(group_id: group.id, user_id: params[:selected_follower_id])

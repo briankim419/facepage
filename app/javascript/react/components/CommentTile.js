@@ -3,8 +3,8 @@ import { Link } from 'react-router';
 
 const CommentTile = props => {
   return(
-    <div>
-      <p>{props.text}</p>
+    <div className="comment-tile">
+      <h5>{props.text}</h5>
     </div>
   )
 }

@@ -81,9 +81,11 @@ class CommentFormContainer extends React.Component {
       errorDiv = <div className="callout alert">{errorItems}</div>
     }
     return(
-      <form onSubmit={this.handleSubmit}>
-        <input name='text' type='text' value={this.state.text} onChange={this.handleChange} />
-        <input className="button" type="submit" value="Submit" />
+      <form onSubmit={this.handleSubmit} className="post-text">
+        <div className="comment-input">
+          <input className="post-text" name='text' type='text' value={this.state.text} onChange={this.handleChange} />
+        </div>
+        <input className="button post-button" type="submit" value="Submit" />
         {errorDiv}
       </form>
     );

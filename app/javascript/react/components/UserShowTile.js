@@ -11,26 +11,17 @@ import { Link } from 'react-router';
    if(props.following == null) {
      button
    } else if(props.following == false) {
-     button = <button onClick={props.toggleFollow} className="panel cell small-10 medium-12 large-12"> Follow </button>
+     button = <button onClick={props.toggleFollow} className="panel cell small-4 follow-button"> Follow </button>
    } else {
-     button = <button onClick={props.toggleFollow} className="panel cell small-10 medium-12 large-12"> Unfollow </button>
+     button = <button onClick={props.toggleFollow} className="panel cell small-4 follow-button"> Unfollow </button>
    }
   return(
-    <div className="tile cell small-10 small-offset-1 large-6 large-offset-3">
-      <div className="callout">
-        <div>
-          <div className="right">
-            <div className="grid-x">
-              {button}
-            </div>
-            <span className="text-right"> {followersTitle} {followers} | {followedsTitle} {followeds} </span>
-          </div>
-          <br/>
-          <br/>
-          <br/>
-          <h1> {props.firstName} {props.lastName}</h1>
-          <p> email: {props.email} </p>
-        </div>
+    <div>
+      <div className="small-6 row devise user-show">
+        <span> {followersTitle} {followers} | {followedsTitle} {followeds} </span>
+        <h1>{props.firstName} {props.lastName}</h1>
+        <p>email: {props.email}</p>
+        {button}
       </div>
     </div>
   )

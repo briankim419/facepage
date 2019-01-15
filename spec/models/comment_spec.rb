@@ -1,5 +1,8 @@
 require 'rails_helper'
 
+
 RSpec.describe Comment, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  it { should have_valid(:text).when("Test Text") }
+  it { should_not have_valid(:text).when(nil) }
 end

@@ -85,7 +85,8 @@ class UserShowContainer extends Component {
      })
      .then(response => response.json())
      .then(body => {
-       this.setState({followersLength: body.followers.length})
+       let temp = this.state.groups.concat(body.group)
+       this.setState({groups: temp})
      })
      .catch(error => console.error(`Error in fetch: ${error.message}`))
   }
@@ -175,7 +176,8 @@ class UserShowContainer extends Component {
     })};
     return(
       <div>
-        <div className="grid-x">
+        <div>
+          <p>Hello</p>
           <UserShowTile
             followers={this.state.followers}
             followeds={this.state.followeds}
@@ -187,9 +189,10 @@ class UserShowContainer extends Component {
             currentUserId={this.state.currentUserId}
             following={this.state.following}
             toggleFollow={this.toggleFollow}
-
           />
         {group_form}
+        <div className="group-tile small-6-centered">
+        </div>
         {all_groups}
         </div>
       </div>

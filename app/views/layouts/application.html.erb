@@ -11,7 +11,7 @@
 </head>
 <body>
 
-  <nav class="top-bar">
+  <nav class="top-bar nav-bar">
     <ul class="title-area">
       <li class="name">
         <h1><a href="/">Facepage</a></h1>
@@ -23,7 +23,7 @@
         <li>
         <%= form_tag(search_users_path, method: :get) do %>
           <li class="top-bar">
-              <%= text_field_tag 'query', params[:query], placeholder: 'Find a Schedule' %>
+              <%= text_field_tag 'query', params[:query], placeholder: 'Find a user' %>
             </li>
             <li>
               <%= submit_tag 'Search', :class => 'search' %>
@@ -31,12 +31,12 @@
         <%- end -%>
       </li>
         <%- if current_user -%>
-          <li class="top-bar"><%= link_to "Profile", current_user %></li>
-          <li class="top-bar"><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+          <li class="top-bar nav-bar"><%= link_to "Profile", current_user %></li>
+          <li class="top-bar nav-bar"><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
         <%- else -%>
 
-          <li class="top-bar"><%= link_to 'Sign Up', new_user_registration_path %></li>
-          <li class="top-bar"><%= link_to 'Sign In', new_user_session_path %></li>
+          <li class="top-bar nav-bar"><%= link_to 'Sign Up', new_user_registration_path %></li>
+          <li class="top-bar nav-bar"><%= link_to 'Sign In', new_user_session_path %></li>
         <%- end -%>
       </ul>
     </section>

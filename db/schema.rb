@@ -41,8 +41,10 @@ ActiveRecord::Schema.define(version: 2019_01_12_215852) do
 
   create_table "groups", force: :cascade do |t|
     t.string "name", null: false
+    t.bigint "chat_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["chat_id"], name: "index_groups_on_chat_id"
   end
 
   create_table "messages", force: :cascade do |t|

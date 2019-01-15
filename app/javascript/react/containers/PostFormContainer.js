@@ -94,16 +94,16 @@ class PostFormContainer extends React.Component {
       errorDiv = <div className="callout alert">{errorItems}</div>
     }
     return(
-      <form className="callout" onSubmit={this.handleSubmit}>
-        <input name='body' type='text' value={this.state.body} onChange={this.handleChange} />
-          <section>
-            <div className="dropzone">
-              <Dropzone onDrop={this.onDrop}>
+      <form className="small-10-centered row devise post-form" onSubmit={this.handleSubmit}>
+        <input className="post-text-box" name='body' type='text' value={this.state.body} onChange={this.handleChange} placeholder='What is on your mind?'/>
+          <section className="small-4 small-centered columns row devise">
+            <div>
+              <Dropzone onDrop={this.onDrop} className="file-zone">
                 <p>Try dropping some files here, or click to select files to upload.</p>
               </Dropzone>
             </div>
             <aside>
-              <h2>Dropped files</h2>
+              <p>Dropped files</p>
               <ul>
                 {
                   this.state.file.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>)
@@ -112,7 +112,7 @@ class PostFormContainer extends React.Component {
             </aside>
           </section>
 
-        <input className="button" type="submit" value="Submit" />
+        <input className="button post-button" type="submit" value="Submit" />
       </form>
     );
   }

@@ -52,9 +52,11 @@ class PostContainer extends React.Component {
       });
     };
     return(
-      <div>
-        <h1>{this.props.body}</h1>
-        <div className="post_photo">
+      <div className="small-10-centered row devise post-show">
+        <div className="text-justify post-body">
+          <h3 className="post">{this.props.body}</h3>
+        </div>
+        <div className="post-photo">
           <img src={this.props.photo} />
         </div>
         {all_comments}

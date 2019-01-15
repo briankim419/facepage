@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Message from '../components/Message';
 import TextFieldWithSubmit from '../components/TextFieldWithSubmit';
+import PastMessagesTile from '../components/PastMessagesTile';
 
 class ChatContainer extends Component {
   constructor(props) {
@@ -8,13 +9,15 @@ class ChatContainer extends Component {
     this.state = {
       user: {},
       messages: [],
-      message: ''
+      message: '',
+      pastMessages: []
     }
 
     this.handleMessageReceipt = this.handleMessageReceipt.bind(this);
     this.handleClearForm = this.handleClearForm.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleMessageChange = this.handleMessageChange.bind(this);
+    this.getPastMessages = this.getPastMessages.bind(this);
   }
 
   componentDidMount() {
@@ -76,6 +79,23 @@ class ChatContainer extends Component {
     this.setState({ message: event.target.value })
   }
 
+  getPastMessages() {
+  let chatId = this.props.id
+  fetch(`/api/v1/messages/${chatId}`, {
+    credentials: 'same-origin',
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' }
+  })
+  .then((response) => {
+    if (response.ok) {
+      return response.json();
+    }
+  })
+  .then((data) => {
+    this.setState({pastMessages: data.messages})
+  })
+}
+
   render() {
     let messages = this.state.messages.map(message => {
       return(
@@ -88,10 +108,13 @@ class ChatContainer extends Component {
     }, this);
 
     return(
-      <div>
-        <div className='callout chat' id='chatWindow'>
-          {messages}
-        </div>
+      <div className="tile cell small-10 small-offset-1 medium-6 medium-offset-3 chat-room">
+      <input className="button post-button" type="submit" value="View Past Messages" onClick={this.getPastMessages} />
+        <PastMessagesTile
+          getPastMessages={this.getPastMessages}
+          pastMessages={this.state.pastMessages}
+        />
+        {messages}
         <form onSubmit={this.handleFormSubmit}>
           <TextFieldWithSubmit
             content={this.state.message}

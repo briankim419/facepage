@@ -3,8 +3,8 @@ import { Link } from 'react-router';
 
 const GroupTile = props => {
   return(
-    <div>
-      <Link to={`/groups/${props.id}`}><h1>{props.name}</h1></Link>
+    <div className="group-tile small-8 row devise">
+      <Link to={`/groups/${props.id}`}><h3>{props.name}</h3></Link>
     </div>
   )
 }

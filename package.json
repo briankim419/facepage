@@ -4,6 +4,8 @@
   "dependencies": {
     "@rails/webpacker": "3.5",
     "babel-preset-react": "~6.24.1",
+    "fetch-mock": "^5.13.1",
+    "fetch-ponyfill": "^6.0.2",
     "prop-types": "~15.6.0",
     "react": "~15.4.2",
     "react-dom": "~15.4.2",

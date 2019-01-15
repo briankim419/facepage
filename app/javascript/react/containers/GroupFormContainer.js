@@ -51,12 +51,12 @@ class GroupFormContainer extends Component {
    })
 
    return (
-     <div className="tile cell">
+     <div className="small-10-centered row devise group-form">
        <form onSubmit={this.handleSubmit}>
         <label>
           Select a follower to create a chat:
           <select onChange={this.handleChange} name='selected_follower_id'>
-            <option value="">Choose a Friend</option>
+            <option value="">Choose a Follower</option>
             {followers}
           </select>
         </label>
@@ -64,7 +64,8 @@ class GroupFormContainer extends Component {
           Chat Name
         </label>
         <input name='chatName' type='text' value={this.state.body} onChange={this.handleChange} />
-        <input type="submit" value="Submit" />
+        <input className="button group-form-button" type="submit" value="Submit" />
+        <h3>Chat Groups:</h3>
        </form>
      </div>
    );

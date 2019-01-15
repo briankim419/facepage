@@ -3,8 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_many :messages
 
-  has_many :usergroup
-  has_many :groups, through: :usergroup
+  has_many :usergroups
+  has_many :groups, through: :usergroups
 
   has_many :follower_follows, class_name: "Follow", foreign_key: :follower_id
   has_many :followeds, through: :follower_follows, source: :followed
