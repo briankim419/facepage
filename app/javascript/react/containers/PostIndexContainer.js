@@ -23,7 +23,7 @@ class PostIndexContainer extends React.Component {
         }
       })
       .then(response => response.json())
-      .then(body => { debugger;
+      .then(body => {
         this.setState({posts:body.posts});
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
