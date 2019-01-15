@@ -177,7 +177,6 @@ class UserShowContainer extends Component {
     return(
       <div>
         <div>
-          <p>Hello</p>
           <UserShowTile
             followers={this.state.followers}
             followeds={this.state.followeds}
