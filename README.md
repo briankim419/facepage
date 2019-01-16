@@ -1,34 +1,39 @@
 # FacePage
 
-FacePage is my first application built right after graduating from Launch Academy. It is a Ruby on Rails app with a React.js front-end. It has many basic features of Facebook and more features will be added in the future. The highlight of the application is the chat system built through ActionCable. Users can create chatrooms with their followers and have a conversation. FacePage utilizes many dependencies such as ActionCable, React Dropzone, Carrierwave, Devise and Foundation. The app uses Ruby version 2.3.3 and React 15.4.2 .
+#### https://facepage-heroku.herokuapp.com/
+<br />
+FacePage is my first application built after Launch Academy. It is a Ruby on Rails app with a React.js front-end. It has many basic features of Facebook and more features will be added in the future. The highlight of the application is the chat system built through ActionCable. Users can create chatrooms with their followers and have a conversation. FacePage utilizes many dependencies such as ActionCable, React Dropzone, Carrierwave, Devise and Foundation. The app uses Ruby version 2.3.3 and React 15.4.2 .
 
-Getting Started
-Clone the repository to your machine
+### Getting Started
 
-Navigate to the cloned repository
+1. Clone the repository to your machine
 
-Run the following from the command line to install all necessary dependencies:
+2. Navigate to the cloned repository
 
-$ bundle install
-$ yarn install
+3. Run the following from the command line to install all necessary dependencies:
 
-Create the database and run migrations
+  `$ bundle install`
+  `$ yarn install`
 
-$ bundle exec rake db:create
-$ bundle exec rake db:migrate
+4. Create the database and run migrations
 
-Start the rails server and webpack server
+  `$ bundle exec rake db:create`
+  `$ bundle exec rake db:migrate`
 
-$ rails s
-$ yarn start
+5. Start the rails server and webpack server
 
-Navigate to localhost:3000 in your web browser. Google Chrome is recommended.
+  `$ rails s`
+  `$ yarn start`
+
+6. Navigate to localhost:3000 in your web browser. Google Chrome is recommended.
 
 Test Suite
 To run RSpec test, please run from the command line:
 
-$ bundle exec rspec
+`$ bundle exec rspec`
 
-The test suite consists of Model and Controller tests and Enzyme tests. More test will be added on.
+The test suite consists of Model and Controller tests and Enzyme feature tests. More test will be added on.
 
-Future Plans
+### Future Plans
+* More tests will be coming out!
+* Implement notification system
