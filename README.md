@@ -28,7 +28,4 @@ Test Suite
 To run RSpec test, please run from the command line:
 
 $ bundle exec rspec
-
-The test suite consists of Model and Controller tests and Enzyme tests. More test will be added on.
-
 Future Plans
