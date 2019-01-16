@@ -1,4 +1,4 @@
-FacePage
+#FacePage
 
 FacePage is my first application built right after graduating from Launch Academy. It is a Ruby on Rails app with a React.js front-end. It has many basic features of Facebook and more features will be added in the future. The highlight of the application is the chat system built through ActionCable. Users can create chatrooms with their followers and have a conversation. FacePage utilizes many dependencies such as ActionCable, React Dropzone, Carrierwave, Devise and Foundation. The app uses Ruby version 2.3.3 and React 15.4.2 .
 
