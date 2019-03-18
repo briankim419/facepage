@@ -37,3 +37,4 @@ The test suite consists of Model and Controller tests and Enzyme feature tests. 
 ### Future Plans
 * More tests will be coming out!
 * Implement notification system
+* https://docs.google.com/presentation/d/1jSWS4elcnfSC0O4BTkVl3jHgd_9TTZb77t-FIbAORYw/edit#slide=id.g5440368a33_0_37 - Google Slides for Relational Diagrams and more
