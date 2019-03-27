@@ -67,7 +67,6 @@ class ChatContainer extends Component {
     let user_info = this.state.user
 
     // Send info to the receive method on the back end
-    debugger;
     if(prepMessage.trim() != ''){
       App.chatChannel.send({
        message: prepMessage,
