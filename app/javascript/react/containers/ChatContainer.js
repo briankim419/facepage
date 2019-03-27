@@ -67,12 +67,15 @@ class ChatContainer extends Component {
     let user_info = this.state.user
 
     // Send info to the receive method on the back end
-    App.chatChannel.send({
-     message: prepMessage,
-     user: user_info
-    })
+    debugger;
+    if(prepMessage.trim() != ''){
+      App.chatChannel.send({
+       message: prepMessage,
+       user: user_info
+      })
 
-    this.handleClearForm();
+      this.handleClearForm();
+    }
   }
 
   handleMessageChange(event) {
@@ -93,6 +96,7 @@ class ChatContainer extends Component {
   })
   .then((data) => {
     this.setState({pastMessages: data.messages})
+    this.setState({messages: []})
   })
 }
 
